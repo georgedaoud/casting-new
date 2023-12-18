@@ -15,7 +15,7 @@
     }
 
     cast-media-player {
-      --progress-color: rgba(255, 181, 255, 1);
+      --progress-color: rgba(0, 181, 255, 1);
     }
   </style>
 </head>
@@ -29,10 +29,7 @@
     playbackConfig.protectionSystem = cast.framework.ContentProtection.WIDEVINE;
 
    const backgroundContainer = document.getElementById('background-container');
-   const castMediaPlayer = document.querySelector('cast-media-player');
-
-        backgroundContainer.style.display = 'block';
-          castMediaPlayer.style.display = 'none';
+   backgroundContainer.style.display = 'block';
    
     context.start({ playbackConfig: playbackConfig });
   </script>
