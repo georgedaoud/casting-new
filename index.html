@@ -15,7 +15,7 @@
     }
 
     cast-media-player {
-      --progress-color: rgba(255, 255, 255, 1);
+      --progress-color: rgba(0, 181, 255, 1);
     }
   </style>
 </head>
@@ -41,13 +41,10 @@
         const backgroundContainer = document.getElementById('background-container');
         const castMediaPlayer = document.querySelector('cast-media-player');
 
-        if (isAudioPlaying) {
+        
           backgroundContainer.style.display = 'block';
           castMediaPlayer.style.display = 'none';
-        } else {
-          backgroundContainer.style.display = 'none';
-          castMediaPlayer.style.display = 'block';
-        }
+      
       }
     );
 
