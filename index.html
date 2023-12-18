@@ -17,22 +17,6 @@
     const playbackConfig = new cast.framework.PlaybackConfig();
     playbackConfig.licenseUrl = 'https://drm.mifteam.com/proxy?drmType=widevine';
     playbackConfig.protectionSystem = cast.framework.ContentProtection.WIDEVINE;
-
-    // Set up background audio
-    const playerManager = context.getPlayerManager();
-    const mediaElement = new Audio();
-    playerManager.setMediaElement(mediaElement);
-
-    // Hide the background when there's no video playback
-    playerManager.addEventListener(
-      cast.framework.events.EventType.MEDIA_STATUS,
-      (event) => {
-        const isVideoPlaying = event.mediaStatus.playerState === cast.framework.messages.PlayerState.PLAYING;
-        const castMediaPlayer = document.querySelector('cast-media-player');
-        castMediaPlayer.style.display = isVideoPlaying ? 'block' : 'none';
-      }
-    );
-
     context.start({ playbackConfig: playbackConfig });
   </script>
 </body>
