@@ -15,7 +15,7 @@
     }
 
     cast-media-player {
-      --progress-color: rgba(0, 181, 255, 1);
+      --progress-color: rgba(255, 181, 255, 1);
     }
   </style>
 </head>
@@ -27,27 +27,10 @@
     const playbackConfig = new cast.framework.PlaybackConfig();
     playbackConfig.licenseUrl = 'https://drm.mifteam.com/proxy?drmType=widevine';
     playbackConfig.protectionSystem = cast.framework.ContentProtection.WIDEVINE;
-
-    // Set up background audio
-    const playerManager = context.getPlayerManager();
-    const mediaElement = new Audio();
-    playerManager.setMediaElement(mediaElement);
-
-    // Show/hide background based on playback state
-    playerManager.addEventListener(
-      cast.framework.events.EventType.MEDIA_STATUS,
-      (event) => {
-        const isAudioPlaying = event.mediaStatus.playerState === cast.framework.messages.PlayerState.PLAYING && !event.mediaStatus.activeTrackIds.length;
-        const backgroundContainer = document.getElementById('background-container');
-        const castMediaPlayer = document.querySelector('cast-media-player');
-
-        
-          backgroundContainer.style.display = 'block';
-          castMediaPlayer.style.display = 'none';
+ 
+    backgroundContainer.style.display = 'block';
+    castMediaPlayer.style.display = 'none';
       
-      }
-    );
-
     context.start({ playbackConfig: playbackConfig });
   </script>
 </body>
