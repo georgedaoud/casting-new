@@ -2,25 +2,15 @@
 <head>
   <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
   <style>
-    #background-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg');
-      background-size: cover;
-      /* Add other styling properties as needed */
-      display: none; /* Initially hide the background */
-    }
-
     cast-media-player {
       --progress-color: rgba(0, 181, 255, 1);
+      background-image: url('https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg'); /* Set the background image URL */
+      background-size: cover;
+      /* Add other styling properties as needed */
     }
   </style>
 </head>
 <body>
-  <div id="background-container"></div>
   <cast-media-player></cast-media-player>
   <script>
     const context = cast.framework.CastReceiverContext.getInstance();
@@ -33,13 +23,13 @@
     const mediaElement = new Audio();
     playerManager.setMediaElement(mediaElement);
 
-    // Show/hide background based on playback state
+    // Hide the background when there's no video playback
     playerManager.addEventListener(
       cast.framework.events.EventType.MEDIA_STATUS,
       (event) => {
-        const isPlaying = event.mediaStatus.playerState === cast.framework.messages.PlayerState.PLAYING;
-        const backgroundContainer = document.getElementById('background-container');
-        backgroundContainer.style.display = isPlaying ? 'block' : 'none';
+        const isVideoPlaying = event.mediaStatus.playerState === cast.framework.messages.PlayerState.PLAYING;
+        const castMediaPlayer = document.querySelector('cast-media-player');
+        castMediaPlayer.style.display = isVideoPlaying ? 'block' : 'none';
       }
     );
 
