@@ -15,7 +15,7 @@
     }
 
     cast-media-player {
-      --progress-color: rgba(255, 181, 255, 1);
+      --progress-color: rgba(0, 181, 255, 1);
     }
   </style>
 </head>
@@ -28,7 +28,8 @@
     playbackConfig.licenseUrl = 'https://drm.mifteam.com/proxy?drmType=widevine';
     playbackConfig.protectionSystem = cast.framework.ContentProtection.WIDEVINE;
  
-  
+    backgroundContainer.style.display = 'block';
+    castMediaPlayer.style.display = 'none';
       
     context.start({ playbackConfig: playbackConfig });
   </script>
